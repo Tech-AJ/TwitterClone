@@ -4,7 +4,10 @@ var bodyParser =require('body-parser');
 //const app = express();
 var path = require('path');
 var authenticationController = require('./server/controllers/authentication-controller.js');
+var profileController = require('./server/controllers/profile-controller');
 var express =require('express');
+var multipart = require('connect-multiparty');
+var multipartMiddleware = multipart();
 var app = express();
 
 
@@ -26,7 +29,11 @@ res.sendFile(path.join(__dirname, 'index.html'));
 app.post('/api/user/signup',authenticationController.signup);
 app.post('/api/user/login',authenticationController.login);
                                              
-                                        
+//Profile
+app.post('/api/profile/editPhoto', multipartMiddleware, profileController.updatePhoto);
+app.post('/api/profile/updateUsername', profileController.updateUsername);
+app.post('/api/profile/updateBio', profileController.updateBio);                                        
+
 app.listen('3000',function(){
     console.log("Listening at 3000");
 });
