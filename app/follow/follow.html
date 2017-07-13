@@ -1,0 +1,9 @@
+<ul>
+	<li ng-repeat="tweeter in users"
+		ng-show="user.data._id !== tweeter._id"> {{tweeter.email}} 
+		<a ng-click="follow(user.data._id, tweeter._id)"
+		   ng-hide="checkIsFollowing(tweeter._id)">follow</a>
+		<a ng-click="unfollow(user.data._id, tweeter._id)"
+		   ng-show="checkIsFollowing(tweeter._id)">unfollow</a>
+	</li>
+</ul>
