@@ -1,1 +1,36 @@
-body { padding-top: 70px; }
+body { padding-top: 100px; }
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+    background-color: #1abc9c;
+    
+    
+}
+
+navbar-nav li a:hover {
+    color: #1abc9c !important;
+}
+
+bg-1 {
+      background-color: #1abc9c; /* Green */
+      color: #ffffff;
+  }
+#nav_a {
+    
+float: right;
+color: white;
+    padding: 20px;
+        
+}
+
+
+img {
+    width: 100px;
+    height: 100px;
+}

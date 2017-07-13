@@ -14,22 +14,25 @@ module.exports.signup= function(req,res){
 module.exports.login= function(req,res){
 
 User.find(req.body,function(err,results){
-     console.log("inside auth-contr");
-     console.log("hello"+req.body+"hello");
+     
     
     if (err){
         console.log("err");
-    }else { console.log("no loop1");}
-    if(results && results.length === 1)
+        res.json({status: 200});
+    }
+    else if (results && results.length === 1)
        { 
            UserData=results[0];
            console.log("success login");
            res.json({email:UserData.email,
-                     id:UserData._id});
+                     _id:UserData._id,
+                     username: UserData.username,
+                      image: UserData.image,
+                      following: UserData.following,
+					  followers: UserData.followers});
        
        }
-    else { console.log("no loop2");}
-     console.log("exit auth-contr");
+  
 }
 )
 
