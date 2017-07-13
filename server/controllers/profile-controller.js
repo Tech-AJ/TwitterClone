@@ -34,7 +34,7 @@ console.log(uploadDate);
                     } else {
                         console.log("save successful");
                         
-                        res.json({status: 200})
+                        res.json(user.image)
                     }
                 })
             })

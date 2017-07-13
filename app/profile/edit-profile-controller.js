@@ -5,7 +5,7 @@
      
       $scope.user = JSON.parse(localStorage['User-data']);
      
-                    console.log($scope.user.data.id);
+                    console.log($scope.user.data._id);
                 
                                 
                 $scope.$watch(function(){
@@ -20,11 +20,18 @@
                         Upload.upload({
                             url: 'api/profile/editPhoto',
                             method: 'POST',
-                            data: {userId: $scope.user.data.id},
+                            data: {userId: $scope.user.data._id},
                             file: file
                         }).progress(function(evt){
                             console.log("firing");
-                        }).success(function(data){
+                        }).success(function(response){
+                            $scope.userImage=(response);
+                           
+                             var user1 = JSON.parse(localStorage['User-data']);
+                            console.log(user1.data);
+                             user1.data.image=(response);
+                            
+                             localStorage.setItem("User-data",JSON.stringify( user1));
                             
                         }).error(function(error){
                             console.log(error);
@@ -32,11 +39,10 @@
                     }
                 };
      
-     
                         
                 $scope.updateUsername = function () {
                     var request = {
-                        userId: $scope.user.data.id,
+                        userId: $scope.user.data._id,
                         username: $scope.user.username
                     }
                     
@@ -49,7 +55,7 @@
                                 
                 $scope.updateBio = function () {
                     var request = {
-                        userId: $scope.user.data.id,
+                        userId: $scope.user.data._id,
                         bio: $scope.user.bio
                     }
                     

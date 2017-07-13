@@ -1,7 +1,7 @@
 (function(){
     angular.module('TimeWaste')
- .controller('NavigationController',['$scope','$state','$http',function($scope,$state,$http){
-       
+ .controller('NavigationController',['$scope','$state','$http','$window',function($scope,$state,$http,$window,){
+     
      if(localStorage["User-data"]){
            $scope.loggedIn=true;
        }
@@ -9,7 +9,7 @@
         $scope.loggedIn=false;
     }
      
-     
+   
      
      $scope.logUserIn=function(){
        
@@ -19,7 +19,11 @@
              console.log("response received");
              
              localStorage.setItem("User-data",JSON.stringify(response));
-             $scope.loggedIn=true;
+           
+             console.log(localStorage);
+             $scope.loggedIn=true;  
+             $state.go('main');
+         //  window.location.reload();
          }
          ), 
        function(error){
@@ -27,6 +31,13 @@
              console.log("error");
        }
          
+     }
+     
+     
+     $scope.logout=function(){
+         localStorage.clear();
+         console.log("cleared");
+         $scope.loggedIn=false;
      }
      
  }]);
